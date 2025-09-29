@@ -264,7 +264,7 @@ const Card = React.memo(({ data, onClick }) => {
 });
 ```
 
-💡 **Note:** React.memoは**浅い比較(shallow comparison)**を行う。深い比較をすると、オブジェクトの場合は再帰的に入っていく必要があるため、パフォーマンス上の問題が発生する可能性がある。
+💡 **Note:** React.memoは **浅い比較(shallow comparison)** を行う。深い比較をすると、オブジェクトの場合は再帰的に入っていく必要があるため、パフォーマンス上の問題が発生する可能性がある。
 
 ---
 
