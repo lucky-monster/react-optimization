@@ -1,12 +1,11 @@
 # Reactリレンダリングとパフォーマンス最適化ガイド
 
-## 📌 概要
+## 概要
 
-Reactでのパフォーマンス最適化について、レンダリング最適化を中心に解説する。useMemo、useCallback、React.memoの正しい使い方と、いつ使うべきかを理解するためのガイド。
+Reactでのパフォーマンス最適化について、レンダリング最適化を中心に解説する。<br />
+useMemo、useCallback、React.memoの正しい使い方と、いつ使うべきかを理解するためのガイド。<br />
 
-⚠️ **重要:** React公式ドキュメントでも「**Don't optimize prematurely!**(早すぎる最適化はするな!)」と言っている。
-
-## 📋 目次
+## 目次
 
 - [Reactがリレンダリングされるタイミング](#reactがリレンダリングされるタイミング)
 - [レンダリング最適化の3つのツール](#レンダリング最適化の3つのツール)
@@ -41,7 +40,9 @@ Reactでのパフォーマンス最適化について、レンダリング最適
 特定の関数を新しく生成せず、再利用できるようにする(関数をキャッシュする)。
 
 #### 構文
+```js
 const cachedFn = useCallback(fn, dependencies)
+```
 
 #### 動作原理
 - 依存性配列に入れた値が変更された時のみ、関数を新しく生成する
@@ -59,8 +60,9 @@ const cachedFn = useCallback(fn, dependencies)
 ---
 
 ### useMemo
-
+```js
 useCallbackが関数をメモ化するなら、useMemoは**結果値をキャッシュ**する。
+```
 
 #### 構文
 const cachedValue = useMemo(calculateValue, dependencies)
@@ -250,7 +252,7 @@ function Parent() {
 }
 ```
 
-```
+```tsx
 // React.memoでコンポーネントをメモ化
 const Card = React.memo(({ data, onClick }) => {
   console.log("Cardコンポーネントレンダリング");
@@ -264,7 +266,8 @@ const Card = React.memo(({ data, onClick }) => {
 });
 ```
 
-💡 **Note:** React.memoは **浅い比較(shallow comparison)** を行う。深い比較をすると、オブジェクトの場合は再帰的に入っていく必要があるため、パフォーマンス上の問題が発生する可能性がある。
+💡 **Note:** React.memoは **浅い比較(shallow comparison)** を行う。<br />
+深い比較をすると、オブジェクトの場合は再帰的に入っていく必要があるため、パフォーマンス上の問題が発生する可能性がある。
 
 ---
 
@@ -282,12 +285,6 @@ const Card = React.memo(({ data, onClick }) => {
 - 全ての子コンポーネントが新しく生成されるのが気になるという理由だけで最適化する
 - メモ化ツールを無分別に使用する(メモリコストを考慮)
 
-### 🎯 最適化の正しいアプローチ
-
-1. **測定する** - 実際にパフォーマンス問題があるか確認
-2. **原因を特定する** - どのコンポーネントが問題か分析
-3. **適切なツールを選択する** - useCallback / useMemo / React.memoを組み合わせて使用
-4. **検証する** - 最適化後のパフォーマンスを確認
 
 ---
 
