@@ -319,6 +319,5 @@ const Card = React.memo(({ data, onClick }) => {
 最後まで読んでくれてありがとう！一緒に良いコードを書いていこう！💪
 
 
-全ての[ソースコード](https://github.com/lucky-monster/react-optimization)はここにあります！
+**全ての[ソースコード](https://github.com/lucky-monster/react-optimization)はここにあります！**
 
----
